@@ -1,8 +1,8 @@
 <%- include("partials/header"); -%>
 
-      <% for(var i=0; i<postsArr.length; i++) { %>
-            <h1><%= postsArr[i].title %></h1>
-            <p><%= postsArr[i].content %></p>
-      <% } %>
+      <% postsArr.forEach(function(post) { %>
+            <h1><%= post.title %></h1>
+            <p><%= post.content %></p>
+      <% }); %>
                   
 <%- include("partials/footer"); -%>
