@@ -44,13 +44,13 @@ app.post("/compose", function(req, res) {
 });
 
 app.get("/posts/:testing", function(req, res) {
-  const paramsTesting = ld.lowerCase(testing);
+  const paramsTesting = ld.lowerCase(req.params.testing);
+
   posts.forEach(function(post) {
-    const postTitle = ld.lowerCase(post);
+    const postTitle = ld.lowerCase(post.title);
+
     if(postTitle == paramsTesting) {
-      console.log("Match Found");
-    } else {
-      console.log("Not Found");
+      res.render("post", {postHead: post.title, postContent: post.content});
     }
   });
 });
