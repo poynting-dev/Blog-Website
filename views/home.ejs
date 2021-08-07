@@ -2,7 +2,7 @@
 
       <% postsArr.forEach(function(post) { %>
             <h1><%= post.title %></h1>
-            <p><%= post.content %></p>
+            <p id="truncateMe"><%= post.content %></p>
       <% }); %>
                   
 <%- include("partials/footer"); -%>
