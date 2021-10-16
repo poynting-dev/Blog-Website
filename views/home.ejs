@@ -98,23 +98,20 @@
     <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="padding-top: 24px;">
       
         <%  postsArr.forEach(function(post){ %>
-
           <% if(post.title === "Home") { %>
             <h1 style="display: inline;"><%=post.title%></h1>
-            <img src="https://img.icons8.com/fluency/24/000000/approve-and-update.png" style="margin: 0 0 13px 8px;" href="www.google.com"/>
-            <img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/30/000000/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png" style="margin: 0 0 13px 8px;"/>
             <p>
               <%=post.content%>
             </p>
-          <% } else  { %>
-            
-                
-                <h1 style="display: inline;" value="postTitle"><%=post.title%></h1>
-                <a href="/<%=post._id%>/edit"> EDIT</a>
-                <a href="/<%=post._id%>/edit"> DELETE</a>
-                <br>
+          <% } else  { %>  
+              <h1 value="postTitle" ><%=post.title%></h1>
+              <div style="display: -webkit-inline-box;">
+                <a href="/<%=post._id%>/edit" class="btn btn-primary" style="margin: 0px 10px 10px 0;"> EDIT</a>
+                <form action="/<%=post._id%>/?_method=DELETE" method="POST" style="margin: 0px 0 10px 0;"><button class="btn btn-outline-primary" >Delete</button></form>
+              </div>
+              <br>                
             <p>
-              <%=post.content.substring(0, 1000) + " ..."%>
+              <%=post.content.substring(0, 100) + " ..."%>
             <a href="/posts/<%=post._id%>">Read More</a>
             </p>
           <% } %>
@@ -132,4 +129,31 @@
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- JS to truncate paragraph -->
+  <script type="text/javascript">
+    var len = 100;
+    var p = document.getElementById('truncateMe');
+    if (p) {
+    
+      var trunc = p.innerHTML;
+      if (trunc.length > len) {
+    
+        /* Truncate the content of the P, then go back to the end of the
+           previous word to ensure that we don't truncate in the middle of
+           a word */
+        trunc = trunc.substring(0, len);
+        trunc = trunc.replace(/\w+$/, '');
+    
+        /* Add an ellipses to the end and make it a link that expands
+           the paragraph back to its original size */
+        trunc += '<a href="#" ' +
+          'onclick="this.parentNode.innerHTML=' +
+          'unescape(\''+escape(p.innerHTML)+'\');return false;">' +
+          '...<\/a>';
+        p.innerHTML = trunc;
+      }
+    }
+    
+    </script>
 </html>

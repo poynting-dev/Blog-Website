@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
-mongoose.connect("mongodb+srv://admin-priyanshu:Strength100@cluster0.nuayu.mongodb.net/blogDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://mayank:mayankkaku123@cluster0.nuayu.mongodb.net/blogDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
 const postSchema = {
   title: String,
@@ -108,6 +108,16 @@ app.put("/:postid/edit",(req, res)=>{
   })
 })
 
+app.delete("/:postid",(req,res)=>{
+  Post.findByIdAndRemove(req.params.postid,function (err){
+      if(err){
+          console.log(err);
+          res.redirect("/");
+      } else {
+        res.redirect("/");
+      }
+    });
+});
 
 app.get("/about", function(req, res) {
   res.render("about", {content: aboutContent});
