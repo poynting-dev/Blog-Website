@@ -95,17 +95,24 @@
     </nav>
 <br>
 <br>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="padding-top: 24px;">
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="padding-top: 24px;">
       
         <%  postsArr.forEach(function(post){ %>
 
           <% if(post.title === "Home") { %>
-            <h1><%=post.title%></h1>
+            <h1 style="display: inline;"><%=post.title%></h1>
+            <img src="https://img.icons8.com/fluency/24/000000/approve-and-update.png" style="margin: 0 0 13px 8px;" href="www.google.com"/>
+            <img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/30/000000/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png" style="margin: 0 0 13px 8px;"/>
             <p>
               <%=post.content%>
             </p>
           <% } else  { %>
-            <h1><%=post.title%></h1>
+            
+                
+                <h1 style="display: inline;" value="postTitle"><%=post.title%></h1>
+                <a href="/<%=post._id%>/edit"> EDIT</a>
+                <a href="/<%=post._id%>/edit"> DELETE</a>
+                <br>
             <p>
               <%=post.content.substring(0, 1000) + " ..."%>
             <a href="/posts/<%=post._id%>">Read More</a>
@@ -117,7 +124,7 @@
 
       <canvas class="my-4 w-100" id="myChart" width="900" height="170"></canvas>
 
-    </main>
+          </div>
   </div>
 </div>
 <footer class="footer mt-auto py-3 bg-light">
